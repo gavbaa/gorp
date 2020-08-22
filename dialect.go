@@ -525,9 +525,9 @@ func (d SqlServerDialect) TruncateClause() string {
 	return "delete from"
 }
 
-// Returns "?"
+// Returns "@p(i+1)"
 func (d SqlServerDialect) BindVar(i int) string {
-	return "?"
+	return fmt.Sprintf("@p%d", i+1)
 }
 
 func (d SqlServerDialect) InsertAutoIncr(exec SqlExecutor, insertSql string, params ...interface{}) (int64, error) {
